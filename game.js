@@ -999,8 +999,211 @@ function revealMark() {
 // CHAPTER ENDING
 // ==========================================
 
+// ==========================================
+// THE STRANGER
+// ==========================================
+
+function meetTheStranger() {
+
+    player.courage += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            You turn around.
+        </p>
+
+        <p>
+            A man is standing beneath the streetlight.
+        </p>
+
+        <p>
+            Tall.
+        </p>
+
+        <p>
+            Completely still.
+        </p>
+
+        <p>
+            He is dressed in black,
+            but somehow the darkness around him
+            seems darker than it should be.
+        </p>
+
+        <p>
+            His eyes meet yours.
+        </p>
+
+        <p class="dramatic">
+            He looks at your wrist.
+        </p>
+
+        <p>
+            His expression changes.
+        </p>
+
+        <p>
+            Only for a second.
+        </p>
+
+        <p>
+            Recognition.
+        </p>
+
+        <p>
+            Then it disappears.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Ask him who he is.",
+        askStranger
+    );
+
+
+    createChoice(
+        "Demand to know why he was following you.",
+        confrontStranger
+    );
+
+
+    createChoice(
+        "Say nothing and watch him.",
+        observeStranger
+    );
+}
+// ==========================================
+// CHAPTER ENDING
+// ==========================================
+
 function chapterEnding() {
 
+    let endingMessage = "";
+
+    if (
+        player.courage > player.fear &&
+        player.courage >= player.curiosity
+    ) {
+
+        endingMessage = `
+            <p>
+                You don't know what the mark means.
+            </p>
+
+            <p>
+                But you know one thing.
+            </p>
+
+            <p class="dramatic">
+                Whatever is coming...
+                you will face it.
+            </p>
+        `;
+
+    }
+
+    else if (
+        player.curiosity > player.fear
+    ) {
+
+        endingMessage = `
+            <p>
+                Questions race through your mind.
+            </p>
+
+            <p>
+                Who was the lion?
+            </p>
+
+            <p>
+                What does the symbol mean?
+            </p>
+
+            <p>
+                And why did it call you
+                "back"?
+            </p>
+        `;
+
+    }
+
+    else {
+
+        endingMessage = `
+            <p>
+                You want to run.
+            </p>
+
+            <p>
+                You want to forget tonight ever happened.
+            </p>
+
+            <p>
+                But deep down, you know the truth.
+            </p>
+
+            <p class="dramatic">
+                The darkness has already found you.
+            </p>
+        `;
+    }
+
+
+    showStory(`
+
+        ${endingMessage}
+
+        <p>
+            You take one final look at the golden mark
+            burning against your skin.
+        </p>
+
+        <p>
+            Then you hear something behind you.
+        </p>
+
+        <p class="dramatic">
+            Footsteps.
+        </p>
+
+        <p>
+            Slow.
+        </p>
+
+        <p>
+            Calm.
+        </p>
+
+        <p>
+            Getting closer.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Turn around.",
+        meetTheStranger
+    );
+
+
+    createChoice(
+        "Run.",
+        runFromStranger
+    );
+}
     let endingMessage = "";
 
 
