@@ -1341,6 +1341,86 @@ function askAboutMark() {
     );
 }
 // ==========================================
+// STRANGER'S WARNING
+// ==========================================
+
+function strangerWarning() {
+
+    player.fear += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            "Who are they?"
+        </p>
+
+        <p>
+            The man looks toward the road.
+        </p>
+
+        <p>
+            His jaw tightens.
+        </p>
+
+        <p>
+            "People who have been waiting
+            a very long time."
+        </p>
+
+        <p>
+            "For me?"
+        </p>
+
+        <p>
+            He looks back at you.
+        </p>
+
+        <p class="dramatic">
+            "For you."
+        </p>
+
+        <p>
+            Before you can ask another question,
+            headlights appear in the distance.
+        </p>
+
+        <p>
+            The man's entire posture changes.
+        </p>
+
+        <p>
+            "You need to go."
+        </p>
+
+        <p>
+            "Why?"
+        </p>
+
+        <p class="dramatic">
+            "Because they're here."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Trust him and leave.",
+        trustStranger
+    );
+
+
+    createChoice(
+        "Stay and find out who is coming.",
+        stayBehind
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
