@@ -1539,6 +1539,87 @@ function stayBehind() {
     );
 }
 // ==========================================
+// STRANGER LEAVES
+// ==========================================
+
+function strangerLeaves() {
+
+    showStory(`
+
+        <p>
+            You blink.
+        </p>
+
+        <p>
+            The man is gone.
+        </p>
+
+        <p>
+            No footsteps.
+        </p>
+
+        <p>
+            No car.
+        </p>
+
+        <p>
+            Nothing.
+        </p>
+
+        <p>
+            Only the moon above you.
+        </p>
+
+        <p>
+            You look down at your wrist.
+        </p>
+
+        <p class="dramatic">
+            The golden mark is still glowing.
+        </p>
+
+        <p>
+            Then, somewhere in the distance,
+            you hear the lion roar.
+        </p>
+
+        <p>
+            You don't know who the man was.
+        </p>
+
+        <p>
+            You don't know who "they" are.
+        </p>
+
+        <p>
+            And you have no idea why he said
+            you don't remember.
+        </p>
+
+        <p class="dramatic">
+            But one thing is becoming clear.
+        </p>
+
+        <p class="dramatic">
+            Tonight wasn't the beginning.
+        </p>
+
+        <p class="dramatic">
+            It was the return.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "End Chapter One",
+        chapterFinalEnding
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
