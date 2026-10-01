@@ -1209,6 +1209,59 @@ function confrontStranger() {
     );
 }
 // ==========================================
+// OBSERVE THE STRANGER
+// ==========================================
+
+function observeStranger() {
+
+    player.curiosity += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            You don't answer.
+        </p>
+
+        <p>
+            You simply watch him.
+        </p>
+
+        <p>
+            He watches you back.
+        </p>
+
+        <p>
+            Neither of you moves.
+        </p>
+
+        <p>
+            Then his eyes flick toward the darkness
+            where the lion disappeared.
+        </p>
+
+        <p class="dramatic">
+            "So it chose you."
+        </p>
+
+        <p>
+            Your blood runs cold.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Ask him what he means.",
+        askAboutMark
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
