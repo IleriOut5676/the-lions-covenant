@@ -35,7 +35,6 @@ const fearDisplay = document.getElementById("fear");
 // ==========================================
 
 function updateStats() {
-
     courageDisplay.textContent = player.courage;
     curiosityDisplay.textContent = player.curiosity;
     trustDisplay.textContent = player.trust;
@@ -48,7 +47,6 @@ function updateStats() {
 // ==========================================
 
 function showStory(content) {
-
     storyText.innerHTML = content;
 }
 
@@ -58,11 +56,9 @@ function showStory(content) {
 // ==========================================
 
 function createChoice(text, action) {
-
     const button = document.createElement("button");
 
     button.textContent = text;
-
     button.addEventListener("click", action);
 
     choices.appendChild(button);
@@ -74,7 +70,6 @@ function createChoice(text, action) {
 // ==========================================
 
 function clearChoices() {
-
     choices.innerHTML = "";
 }
 
@@ -118,27 +113,22 @@ function startGame() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Keep walking. I refuse to let fear control me.",
         () => firstChoice("courage")
     );
 
-
     createChoice(
         "Stop and listen. Something about the sound feels familiar.",
         () => firstChoice("curiosity")
     );
 
-
     createChoice(
         "Turn around and run.",
         () => firstChoice("fear")
     );
-
 
     updateStats();
 }
@@ -153,31 +143,23 @@ function firstChoice(choice) {
     if (choice === "courage") {
 
         player.courage += 1;
-
         updateStats();
-
         courageousEncounter();
 
     }
 
-
     else if (choice === "curiosity") {
 
         player.curiosity += 1;
-
         updateStats();
-
         curiousEncounter();
 
     }
 
-
     else if (choice === "fear") {
 
         player.fear += 1;
-
         updateStats();
-
         fearfulEncounter();
 
     }
@@ -227,15 +209,12 @@ function courageousEncounter() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Stand your ground.",
         courageChoice
     );
-
 
     createChoice(
         'Ask, "Why are you following me?"',
@@ -283,15 +262,12 @@ function curiousEncounter() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Go closer.",
         investigateLion
     );
-
 
     createChoice(
         "Stay hidden and observe.",
@@ -325,10 +301,6 @@ function fearfulEncounter() {
             You turn the corner.
         </p>
 
-        <p>
-            Then you stop.
-        </p>
-
         <p class="dramatic">
             The lion is already there.
         </p>
@@ -339,15 +311,12 @@ function fearfulEncounter() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Face the lion.",
         faceFear
     );
-
 
     createChoice(
         'Whisper, "Please don\'t hurt me."',
@@ -363,9 +332,7 @@ function fearfulEncounter() {
 function courageChoice() {
 
     player.courage += 1;
-
     updateStats();
-
 
     showStory(`
 
@@ -403,9 +370,7 @@ function courageChoice() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Reach toward it.",
@@ -421,7 +386,6 @@ function courageChoice() {
 function speakToLion() {
 
     player.curiosity += 1;
-
     updateStats();
 
     lionVoice();
@@ -435,9 +399,7 @@ function speakToLion() {
 function investigateLion() {
 
     player.curiosity += 1;
-
     updateStats();
-
 
     showStory(`
 
@@ -471,9 +433,7 @@ function investigateLion() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Look at your wrist.",
@@ -489,9 +449,7 @@ function investigateLion() {
 function watchLion() {
 
     player.curiosity += 1;
-
     updateStats();
-
 
     showStory(`
 
@@ -518,16 +476,12 @@ function watchLion() {
         <p>
             Not to you.
         </p>
-
-        <p>
-            To something behind you.
+        To something behind you.
         </p>
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Slowly turn around.",
@@ -545,7 +499,6 @@ function faceFear() {
     player.courage += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -576,9 +529,7 @@ function faceFear() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         'Ask, "What are you?"',
@@ -596,7 +547,6 @@ function begLion() {
     player.fear += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -622,15 +572,15 @@ function begLion() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Listen.",
         lionVoice
     );
 }
+
+
 // ==========================================
 // THE LION SPEAKS
 // ==========================================
@@ -674,15 +624,12 @@ function lionVoice() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         'Ask, "Who are you?"',
         askQuestion
     );
-
 
     createChoice(
         "Stay silent.",
@@ -700,7 +647,6 @@ function askQuestion() {
     player.curiosity += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -742,15 +688,12 @@ function askQuestion() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Look at your wrist.",
         touchWrist
     );
-
 
     createChoice(
         "Look behind you.",
@@ -768,7 +711,6 @@ function staySilent() {
     player.trust += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -808,9 +750,7 @@ function staySilent() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Look at your wrist.",
@@ -828,7 +768,6 @@ function touchWrist() {
     player.curiosity += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -867,9 +806,7 @@ function touchWrist() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Look at the mark.",
@@ -887,7 +824,6 @@ function lookBehind() {
     player.fear += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -926,9 +862,7 @@ function lookBehind() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Look at the mark on your wrist.",
@@ -944,11 +878,6 @@ function lookBehind() {
 function revealMark() {
 
     let reaction = "";
-
-
-    // --------------------------------------
-    // COURAGE REACTION
-    // --------------------------------------
 
     if (
         player.courage >= player.curiosity &&
@@ -977,11 +906,6 @@ function revealMark() {
         `;
     }
 
-
-    // --------------------------------------
-    // CURIOSITY REACTION
-    // --------------------------------------
-
     else if (player.curiosity >= player.fear) {
 
         reaction = `
@@ -1007,11 +931,6 @@ function revealMark() {
         `;
     }
 
-
-    // --------------------------------------
-    // FEAR REACTION
-    // --------------------------------------
-
     else {
 
         reaction = `
@@ -1036,7 +955,6 @@ function revealMark() {
 
         `;
     }
-
 
     showStory(`
 
@@ -1065,9 +983,7 @@ function revealMark() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Continue.",
@@ -1080,14 +996,13 @@ function revealMark() {
 // END OF THE FIRST SECTION OF CHAPTER ONE
 // ==========================================
 
+// ==========================================
+// CHAPTER ONE ENDING
+// ==========================================
+
 function chapterEnding() {
 
     let ending = "";
-
-
-    // --------------------------------------
-    // COURAGE ENDING
-    // --------------------------------------
 
     if (
         player.courage >= player.curiosity &&
@@ -1113,11 +1028,6 @@ function chapterEnding() {
         `;
     }
 
-
-    // --------------------------------------
-    // CURIOSITY ENDING
-    // --------------------------------------
-
     else if (player.curiosity >= player.fear) {
 
         ending = `
@@ -1138,11 +1048,6 @@ function chapterEnding() {
         `;
     }
 
-
-    // --------------------------------------
-    // FEAR ENDING
-    // --------------------------------------
-
     else {
 
         ending = `
@@ -1162,7 +1067,6 @@ function chapterEnding() {
 
         `;
     }
-
 
     showStory(`
 
@@ -1195,21 +1099,20 @@ function chapterEnding() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Turn around.",
         meetTheStranger
     );
 
-
     createChoice(
         "Run.",
         runFromStranger
     );
 }
+
+
 // ==========================================
 // THE MYSTERIOUS STRANGER
 // ==========================================
@@ -1277,21 +1180,17 @@ function meetTheStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Ask him who he is.",
         askStranger
     );
 
-
     createChoice(
         "Demand to know why he was following you.",
         confrontStranger
     );
-
 
     createChoice(
         "Say nothing and watch him.",
@@ -1309,7 +1208,6 @@ function runFromStranger() {
     player.fear += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1361,9 +1259,7 @@ function runFromStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Face the lion.",
@@ -1381,7 +1277,6 @@ function askStranger() {
     player.curiosity += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1424,15 +1319,12 @@ function askStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Ask him about the mark.",
         askAboutMark
     );
-
 
     createChoice(
         "Tell him to leave you alone.",
@@ -1450,7 +1342,6 @@ function confrontStranger() {
     player.courage += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1495,15 +1386,12 @@ function confrontStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Ask him about the mark.",
         askAboutMark
     );
-
 
     createChoice(
         "Tell him to leave.",
@@ -1521,7 +1409,6 @@ function observeStranger() {
     player.curiosity += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1564,9 +1451,7 @@ function observeStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Ask him about the mark.",
@@ -1584,7 +1469,6 @@ function rejectStranger() {
     player.fear += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1621,9 +1505,7 @@ function rejectStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Look at the mark.",
@@ -1641,7 +1523,6 @@ function askAboutMark() {
     player.curiosity += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1697,23 +1578,18 @@ function askAboutMark() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Ask what he means.",
         strangerWarning
     );
 
-
     createChoice(
         "Tell him to leave you alone.",
         rejectStranger
     );
 }
-
-
 // ==========================================
 // THE WARNING
 // ==========================================
@@ -1723,7 +1599,6 @@ function strangerWarning() {
     player.fear += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1770,15 +1645,12 @@ function strangerWarning() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Trust the stranger.",
         trustStranger
     );
-
 
     createChoice(
         "Stay behind.",
@@ -1796,7 +1668,6 @@ function trustStranger() {
     player.trust += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1836,9 +1707,7 @@ function trustStranger() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Follow him.",
@@ -1856,7 +1725,6 @@ function stayBehind() {
     player.courage += 1;
 
     updateStats();
-
 
     showStory(`
 
@@ -1896,15 +1764,15 @@ function stayBehind() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Demand an explanation.",
         strangerLeaves
     );
 }
+
+
 // ==========================================
 // THE STRANGER LEAVES
 // ==========================================
@@ -1984,9 +1852,7 @@ function strangerLeaves() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "End Chapter One",
@@ -2069,9 +1935,7 @@ function chapterFinalEnding() {
 
     `);
 
-
     clearChoices();
-
 
     createChoice(
         "Restart Chapter One",
@@ -2091,9 +1955,7 @@ function restartGame() {
     player.trust = 0;
     player.fear = 0;
 
-
     updateStats();
-
 
     startGame();
 }
