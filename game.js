@@ -1477,6 +1477,68 @@ function trustStranger() {
     );
 }
 // ==========================================
+// STAY BEHIND
+// ==========================================
+
+function stayBehind() {
+
+    player.courage += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            You refuse to move.
+        </p>
+
+        <p>
+            "I'm not going anywhere."
+        </p>
+
+        <p>
+            The man studies you for a long moment.
+        </p>
+
+        <p>
+            Then, unexpectedly,
+            he smiles.
+        </p>
+
+        <p class="dramatic">
+            "You really don't remember."
+        </p>
+
+        <p>
+            "Remember what?"
+        </p>
+
+        <p>
+            He doesn't answer.
+        </p>
+
+        <p>
+            The approaching headlights
+            suddenly disappear.
+        </p>
+
+        <p>
+            Silence returns.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Demand an explanation.",
+        strangerLeaves
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
