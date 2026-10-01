@@ -1,5 +1,3 @@
-alert("GAME.JS IS WORKING!");
-
 // ==========================================
 // THE LION'S COVENANT
 // CHOICE-BASED GAME ENGINE
@@ -633,49 +631,45 @@ function begLion() {
         lionVoice
     );
 }
-
-
 // ==========================================
-// LION VOICE
+// THE LION SPEAKS
 // ==========================================
 
 function lionVoice() {
 
-    player.trust += 1;
-
-    updateStats();
-
-
     showStory(`
 
         <p>
-            The lion's golden eyes meet yours.
+            You wait.
         </p>
 
         <p>
-            The entire city suddenly becomes silent.
+            The lion doesn't move.
         </p>
 
         <p>
-            You cannot hear traffic.
-        </p>
-
-        <p>
-            You cannot hear the wind.
-        </p>
-
-        <p>
-            You cannot even hear your own breathing.
+            Then the voice returns.
         </p>
 
         <p class="dramatic">
-            Then a voice speaks inside your mind.
+            "You finally came back."
         </p>
 
         <p>
-            <em>
-                "You finally came back."
-            </em>
+            Your breath catches.
+        </p>
+
+        <p>
+            You look around.
+        </p>
+
+        <p>
+            There is no one there.
+        </p>
+
+        <p>
+            Yet somehow, you know the voice
+            is speaking directly to you.
         </p>
 
     `);
@@ -685,20 +679,20 @@ function lionVoice() {
 
 
     createChoice(
-        '"Back from where?"',
+        'Ask, "Who are you?"',
         askQuestion
     );
 
 
     createChoice(
-        "Say nothing.",
+        "Stay silent.",
         staySilent
     );
 }
 
 
 // ==========================================
-// ASK QUESTION
+// ASK THE VOICE A QUESTION
 // ==========================================
 
 function askQuestion() {
@@ -707,7 +701,61 @@ function askQuestion() {
 
     updateStats();
 
-    revealMark();
+
+    showStory(`
+
+        <p>
+            "Who are you?"
+        </p>
+
+        <p>
+            The lion watches you.
+        </p>
+
+        <p>
+            The voice answers inside your mind.
+        </p>
+
+        <p class="dramatic">
+            "That is the wrong question."
+        </p>
+
+        <p>
+            Your stomach twists.
+        </p>
+
+        <p>
+            "Then what should I ask?"
+        </p>
+
+        <p>
+            Silence.
+        </p>
+
+        <p>
+            Then—
+        </p>
+
+        <p class="dramatic">
+            "Ask who you are."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Look at your wrist.",
+        touchWrist
+    );
+
+
+    createChoice(
+        "Look behind you.",
+        lookBehind
+    );
 }
 
 
@@ -721,26 +769,117 @@ function staySilent() {
 
     updateStats();
 
-    revealMark();
+
+    showStory(`
+
+        <p>
+            You say nothing.
+        </p>
+
+        <p>
+            Somehow, the silence feels like
+            an answer of its own.
+        </p>
+
+        <p>
+            The lion steps closer.
+        </p>
+
+        <p>
+            Your instincts tell you to run.
+        </p>
+
+        <p>
+            But another feeling rises beneath
+            the fear.
+        </p>
+
+        <p class="dramatic">
+            Recognition.
+        </p>
+
+        <p>
+            The voice returns.
+        </p>
+
+        <p>
+            "You remember more than you think."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Look at your wrist.",
+        touchWrist
+    );
 }
 
 
 // ==========================================
-// TOUCH WRIST
+// TOUCH THE WRIST
 // ==========================================
 
 function touchWrist() {
 
-    player.trust += 1;
+    player.curiosity += 1;
 
     updateStats();
 
-    revealMark();
+
+    showStory(`
+
+        <p>
+            Slowly, you raise your hand.
+        </p>
+
+        <p>
+            Your wrist feels strangely warm.
+        </p>
+
+        <p>
+            You touch the place where
+            the lion's symbol appeared.
+        </p>
+
+        <p class="dramatic">
+            Heat shoots through your arm.
+        </p>
+
+        <p>
+            You gasp.
+        </p>
+
+        <p>
+            Golden light spreads beneath your skin.
+        </p>
+
+        <p>
+            The lion immediately lowers its head.
+        </p>
+
+        <p>
+            Almost like it is bowing.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Look at the mark.",
+        revealMark
+    );
 }
 
 
 // ==========================================
-// LOOK BEHIND
+// LOOK BEHIND YOU
 // ==========================================
 
 function lookBehind() {
@@ -753,271 +892,20 @@ function lookBehind() {
     showStory(`
 
         <p>
-            You slowly turn around.
+            Slowly, you turn around.
         </p>
 
         <p>
-            There is nobody there.
+            At first, there is nothing.
         </p>
 
         <p>
-            You turn back.
+            Then you notice someone standing
+            beneath a streetlight.
         </p>
 
         <p>
-            The lion is gone.
-        </p>
-
-        <p class="dramatic">
-            But something is burning against your wrist.
-        </p>
-
-    `);
-
-
-    clearChoices();
-
-
-    createChoice(
-        "Look at your wrist.",
-        revealMark
-    );
-}
-
-
-// ==========================================
-// THE MARK
-// ==========================================
-
-// ==========================================
-// THE MARK
-// ==========================================
-
-function revealMark() {
-
-    let reaction = "";
-
-    if (
-        player.courage >= player.curiosity &&
-        player.courage >= player.fear &&
-        player.courage >= player.trust
-    ) {
-
-        reaction = `
-            <p>
-                Your first instinct is not to run.
-            </p>
-
-            <p>
-                Somehow, standing beneath the moon,
-                you feel strangely certain.
-            </p>
-
-            <p class="dramatic">
-                You are not supposed to be afraid.
-            </p>
-        `;
-
-    }
-
-    else if (
-        player.curiosity >= player.courage &&
-        player.curiosity >= player.fear &&
-        player.curiosity >= player.trust
-    ) {
-
-        reaction = `
-            <p>
-                Your mind races with questions.
-            </p>
-
-            <p>
-                What is happening to you?
-            </p>
-
-            <p>
-                Why does this symbol feel familiar?
-            </p>
-
-            <p class="dramatic">
-                And why does some part of you want to understand it?
-            </p>
-        `;
-
-    }
-
-    else if (
-        player.trust >= player.courage &&
-        player.trust >= player.curiosity &&
-        player.trust >= player.fear
-    ) {
-
-        reaction = `
-            <p>
-                You should be terrified.
-            </p>
-
-            <p>
-                Yet something inside you tells you
-                that this is not an attack.
-            </p>
-
-            <p class="dramatic">
-                Somehow, you feel that you have been here before.
-            </p>
-        `;
-
-    }
-
-    else {
-
-        reaction = `
-            <p>
-                Panic rises in your chest.
-            </p>
-
-            <p>
-                You want to tear the strange symbol
-                from your skin.
-            </p>
-
-            <p class="dramatic">
-                But the mark only burns brighter.
-            </p>
-        `;
-    }
-
-
-    showStory(`
-
-        <p>
-            You look down.
-        </p>
-
-        <p>
-            A golden symbol is appearing beneath your skin.
-        </p>
-
-        <p>
-            It resembles the head of a lion
-            surrounded by an ancient circle.
-        </p>
-
-        <p>
-            You have never seen it before.
-        </p>
-
-        <p>
-            Yet somehow...
-        </p>
-
-        <p class="dramatic">
-            you recognise it.
-        </p>
-
-        ${reaction}
-
-        <p>
-            Somewhere across the city,
-            an elderly woman suddenly opens her eyes.
-        </p>
-
-        <p>
-            She looks toward the moon.
-        </p>
-
-        <p class="dramatic">
-            "She's awakened."
-        </p>
-
-    `);
-
-
-    clearChoices();
-
-
-    createChoice(
-        "Continue.",
-        chapterEnding
-    );
-}
-
-    showStory(`
-
-        <p>
-            You look down.
-        </p>
-
-        <p>
-            A golden symbol is appearing beneath your skin.
-        </p>
-
-        <p>
-            It resembles the head of a lion
-            surrounded by an ancient circle.
-        </p>
-
-        <p>
-            You have never seen it before.
-        </p>
-
-        <p>
-            Yet somehow...
-        </p>
-
-        <p class="dramatic">
-            you recognise it.
-        </p>
-
-        <p>
-            Somewhere across the city,
-            an elderly woman suddenly opens her eyes.
-        </p>
-
-        <p>
-            She looks toward the moon.
-        </p>
-
-        <p>
-            "She's awakened."
-        </p>
-
-    `);
-
-
-    clearChoices();
-
-
-    createChoice(
-        "Continue.",
-        chapterEnding
-    );
-}
-
-
-// ==========================================
-// CHAPTER ENDING
-// ==========================================
-
-// ==========================================
-// THE STRANGER
-// ==========================================
-
-function meetTheStranger() {
-
-    player.courage += 1;
-
-    updateStats();
-
-
-    showStory(`
-
-        <p>
-            You turn around.
-        </p>
-
-        <p>
-            A man is standing beneath the streetlight.
+            A man.
         </p>
 
         <p>
@@ -1029,33 +917,362 @@ function meetTheStranger() {
         </p>
 
         <p>
-            He is dressed in black,
-            but somehow the darkness around him
-            seems darker than it should be.
-        </p>
-
-        <p>
-            His eyes meet yours.
+            You cannot see his face clearly.
         </p>
 
         <p class="dramatic">
-            He looks at your wrist.
+            But he is watching you.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Look at the mark on your wrist.",
+        revealMark
+    );
+}
+
+
+// ==========================================
+// THE GOLDEN MARK
+// ==========================================
+
+function revealMark() {
+
+    let reaction = "";
+
+
+    // --------------------------------------
+    // COURAGE REACTION
+    // --------------------------------------
+
+    if (
+        player.courage >= player.curiosity &&
+        player.courage >= player.fear
+    ) {
+
+        reaction = `
+
+            <p>
+                You stare at the symbol without
+                allowing yourself to step back.
+            </p>
+
+            <p>
+                Fear is there.
+            </p>
+
+            <p>
+                But it doesn't control you.
+            </p>
+
+            <p class="dramatic">
+                Somehow, you feel ready.
+            </p>
+
+        `;
+    }
+
+
+    // --------------------------------------
+    // CURIOSITY REACTION
+    // --------------------------------------
+
+    else if (player.curiosity >= player.fear) {
+
+        reaction = `
+
+            <p>
+                A thousand questions race
+                through your mind.
+            </p>
+
+            <p>
+                Where did the mark come from?
+            </p>
+
+            <p>
+                Why does the lion recognise you?
+            </p>
+
+            <p>
+                And who is the man watching
+                from the shadows?
+            </p>
+
+        `;
+    }
+
+
+    // --------------------------------------
+    // FEAR REACTION
+    // --------------------------------------
+
+    else {
+
+        reaction = `
+
+            <p>
+                Your breathing becomes shallow.
+            </p>
+
+            <p>
+                You want to cover your wrist,
+                but your hand refuses to move.
+            </p>
+
+            <p>
+                The golden symbol pulses beneath
+                your skin.
+            </p>
+
+            <p class="dramatic">
+                Something has awakened.
+            </p>
+
+        `;
+    }
+
+
+    showStory(`
+
+        <p>
+            You stare at your wrist.
         </p>
 
         <p>
-            His expression changes.
+            The symbol is unmistakable.
+        </p>
+
+        <p class="dramatic">
+            A golden lion.
+        </p>
+
+        ${reaction}
+
+        <p>
+            Somewhere in the distance,
+            an elderly woman's voice whispers:
+        </p>
+
+        <p class="dramatic">
+            "She's awakened."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Continue.",
+        chapterEnding
+    );
+}
+
+
+// ==========================================
+// END OF THE FIRST SECTION OF CHAPTER ONE
+// ==========================================
+
+function chapterEnding() {
+
+    let ending = "";
+
+
+    // --------------------------------------
+    // COURAGE ENDING
+    // --------------------------------------
+
+    if (
+        player.courage >= player.curiosity &&
+        player.courage >= player.fear
+    ) {
+
+        ending = `
+
+            <p>
+                You refuse to run.
+            </p>
+
+            <p>
+                Whatever is happening,
+                you are going to face it.
+            </p>
+
+            <p class="dramatic">
+                You have never been more certain
+                of anything.
+            </p>
+
+        `;
+    }
+
+
+    // --------------------------------------
+    // CURIOSITY ENDING
+    // --------------------------------------
+
+    else if (player.curiosity >= player.fear) {
+
+        ending = `
+
+            <p>
+                Your mind is filled with questions.
+            </p>
+
+            <p>
+                You know there is a truth hidden
+                beneath everything that just happened.
+            </p>
+
+            <p class="dramatic">
+                And you intend to find it.
+            </p>
+
+        `;
+    }
+
+
+    // --------------------------------------
+    // FEAR ENDING
+    // --------------------------------------
+
+    else {
+
+        ending = `
+
+            <p>
+                Every instinct tells you to leave.
+            </p>
+
+            <p>
+                But deep down, you already know
+                that running will not make this disappear.
+            </p>
+
+            <p class="dramatic">
+                Something has found you.
+            </p>
+
+        `;
+    }
+
+
+    showStory(`
+
+        <p class="chapter">
+            CHAPTER ONE
+        </p>
+
+        <h2>
+            The Awakening
+        </h2>
+
+        ${ending}
+
+        <p>
+            You take one final look at the lion.
         </p>
 
         <p>
-            Only for a second.
+            When you look toward the streetlight again,
+            the mysterious man is gone.
         </p>
 
         <p>
-            Recognition.
+            Or at least...
+        </p>
+
+        <p class="dramatic">
+            You think he is.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Turn around.",
+        meetTheStranger
+    );
+
+
+    createChoice(
+        "Run.",
+        runFromStranger
+    );
+}
+// ==========================================
+// THE MYSTERIOUS STRANGER
+// ==========================================
+
+function meetTheStranger() {
+
+    showStory(`
+
+        <p>
+            You turn around.
         </p>
 
         <p>
-            Then it disappears.
+            The street is empty.
+        </p>
+
+        <p>
+            The lion is gone.
+        </p>
+
+        <p>
+            For a moment, you wonder if you imagined
+            everything.
+        </p>
+
+        <p>
+            Then you hear footsteps.
+        </p>
+
+        <p>
+            Slow.
+        </p>
+
+        <p>
+            Deliberate.
+        </p>
+
+        <p class="dramatic">
+            The man from the streetlight steps
+            into the moonlight.
+        </p>
+
+        <p>
+            He is dressed completely in black.
+        </p>
+
+        <p>
+            His expression is calm.
+        </p>
+
+        <p>
+            Almost too calm for someone who has just
+            watched a lion appear in the middle of
+            Johannesburg.
+        </p>
+
+        <p>
+            His eyes move from your face...
+            to your wrist.
+        </p>
+
+        <p class="dramatic">
+            He knows about the mark.
         </p>
 
     `);
@@ -1079,9 +1296,82 @@ function meetTheStranger() {
     createChoice(
         "Say nothing and watch him.",
         observeStranger
-        
     );
 }
+
+
+// ==========================================
+// RUN FROM THE STRANGER
+// ==========================================
+
+function runFromStranger() {
+
+    player.fear += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            You don't wait for an explanation.
+        </p>
+
+        <p>
+            You run.
+        </p>
+
+        <p>
+            Your feet carry you down the street
+            as fast as they can.
+        </p>
+
+        <p>
+            You don't stop.
+        </p>
+
+        <p>
+            You don't look back.
+        </p>
+
+        <p>
+            Then you hear his voice.
+        </p>
+
+        <p class="dramatic">
+            "You really don't remember me?"
+        </p>
+
+        <p>
+            You freeze.
+        </p>
+
+        <p>
+            You slowly turn around.
+        </p>
+
+        <p>
+            He is standing several metres away.
+        </p>
+
+        <p>
+            Somehow...
+            he knows your name.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Face the lion.",
+        strangerLeaves
+    );
+}
+
+
 // ==========================================
 // ASK THE STRANGER
 // ==========================================
@@ -1096,37 +1386,40 @@ function askStranger() {
     showStory(`
 
         <p>
+            You take a careful step toward him.
+        </p>
+
+        <p>
             "Who are you?"
         </p>
 
         <p>
-            The man doesn't answer immediately.
+            The stranger studies you.
         </p>
 
         <p>
-            His gaze remains fixed on your wrist.
+            For a moment, he says nothing.
         </p>
 
         <p>
-            "The better question,"
-            he finally says,
-            "is who are you?"
-        </p>
-
-        <p>
-            Your stomach drops.
-        </p>
-
-        <p>
-            "I asked you first."
+            Then his eyes narrow.
         </p>
 
         <p class="dramatic">
-            A faint smile touches his lips.
+            "That's what you want to know?"
         </p>
 
         <p>
-            "I know."
+            His voice is quiet.
+        </p>
+
+        <p>
+            Almost familiar.
+        </p>
+
+        <p>
+            "The better question is...
+            who are you?"
         </p>
 
     `);
@@ -1136,7 +1429,7 @@ function askStranger() {
 
 
     createChoice(
-        "Ask him what he knows about the mark.",
+        "Ask him about the mark.",
         askAboutMark
     );
 
@@ -1146,6 +1439,8 @@ function askStranger() {
         rejectStranger
     );
 }
+
+
 // ==========================================
 // CONFRONT THE STRANGER
 // ==========================================
@@ -1160,27 +1455,21 @@ function confrontStranger() {
     showStory(`
 
         <p>
-            "Why were you following me?"
+            You step forward.
         </p>
 
         <p>
-            The man's expression doesn't change.
+            "You've been following me."
         </p>
 
         <p>
-            "I wasn't."
+            The stranger doesn't deny it.
         </p>
 
         <p>
-            You narrow your eyes.
-        </p>
-
-        <p>
-            "Then what are you doing here?"
-        </p>
-
-        <p>
-            He takes one step closer.
+            Instead, he looks at you as though
+            he has been waiting for this moment
+            for years.
         </p>
 
         <p class="dramatic">
@@ -1188,7 +1477,20 @@ function confrontStranger() {
         </p>
 
         <p>
-            The words send a strange chill through you.
+            Your heart skips.
+        </p>
+
+        <p>
+            "Why?"
+        </p>
+
+        <p>
+            He glances at your wrist.
+        </p>
+
+        <p>
+            "Because you were never supposed
+            to awaken alone."
         </p>
 
     `);
@@ -1198,16 +1500,18 @@ function confrontStranger() {
 
 
     createChoice(
-        "Ask him what he means.",
+        "Ask him about the mark.",
         askAboutMark
     );
 
 
     createChoice(
-        "Step away from him.",
+        "Tell him to leave.",
         rejectStranger
     );
 }
+
+
 // ==========================================
 // OBSERVE THE STRANGER
 // ==========================================
@@ -1222,7 +1526,7 @@ function observeStranger() {
     showStory(`
 
         <p>
-            You don't answer.
+            You say nothing.
         </p>
 
         <p>
@@ -1230,16 +1534,16 @@ function observeStranger() {
         </p>
 
         <p>
-            He watches you back.
+            He seems completely unafraid.
         </p>
 
         <p>
-            Neither of you moves.
+            His attention remains fixed
+            on your wrist.
         </p>
 
         <p>
-            Then his eyes flick toward the darkness
-            where the lion disappeared.
+            Then he quietly says:
         </p>
 
         <p class="dramatic">
@@ -1247,7 +1551,15 @@ function observeStranger() {
         </p>
 
         <p>
-            Your blood runs cold.
+            You frown.
+        </p>
+
+        <p>
+            "What chose me?"
+        </p>
+
+        <p>
+            He doesn't answer.
         </p>
 
     `);
@@ -1257,10 +1569,69 @@ function observeStranger() {
 
 
     createChoice(
-        "Ask him what he means.",
+        "Ask him about the mark.",
         askAboutMark
     );
 }
+
+
+// ==========================================
+// REJECT THE STRANGER
+// ==========================================
+
+function rejectStranger() {
+
+    player.fear += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            "I don't know who you think I am,"
+            you say,
+            "but you need to leave me alone."
+        </p>
+
+        <p>
+            The stranger's expression doesn't change.
+        </p>
+
+        <p>
+            He takes one step backward.
+        </p>
+
+        <p class="dramatic">
+            "Not yet."
+        </p>
+
+        <p>
+            Before you can respond,
+            he disappears into the darkness.
+        </p>
+
+        <p>
+            You stare after him.
+        </p>
+
+        <p>
+            The street is completely empty.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Look at the mark.",
+        strangerLeaves
+    );
+}
+
+
 // ==========================================
 // ASK ABOUT THE MARK
 // ==========================================
@@ -1275,24 +1646,20 @@ function askAboutMark() {
     showStory(`
 
         <p>
-            "What do you know about this?"
+            You raise your wrist.
         </p>
 
         <p>
-            You hold up your wrist.
+            "What is this?"
         </p>
 
         <p>
-            The golden symbol is still glowing.
+            The stranger's expression finally changes.
         </p>
 
         <p>
-            For the first time,
-            the man's calm expression disappears.
-        </p>
-
-        <p>
-            He looks almost concerned.
+            Something almost like fear crosses
+            his face.
         </p>
 
         <p class="dramatic">
@@ -1300,27 +1667,32 @@ function askAboutMark() {
         </p>
 
         <p>
-            "Awakened?"
+            Your stomach drops.
         </p>
 
         <p>
-            He says nothing.
+            "Awakened to what?"
         </p>
 
         <p>
-            You take a step toward him.
+            He looks toward the darkness
+            behind you.
         </p>
 
         <p>
-            "What does that mean?"
-        </p>
-
-        <p>
-            He looks directly into your eyes.
-        </p>
-
-        <p class="dramatic">
             "It means they know you're alive."
+        </p>
+
+        <p>
+            You stare at him.
+        </p>
+
+        <p>
+            "Who are they?"
+        </p>
+
+        <p>
+            He doesn't answer.
         </p>
 
     `);
@@ -1330,18 +1702,20 @@ function askAboutMark() {
 
 
     createChoice(
-        "Who are 'they'?",
+        "Ask what he means.",
         strangerWarning
     );
 
 
     createChoice(
-        "Tell him you don't believe him.",
+        "Tell him to leave you alone.",
         rejectStranger
     );
 }
+
+
 // ==========================================
-// STRANGER'S WARNING
+// THE WARNING
 // ==========================================
 
 function strangerWarning() {
@@ -1354,11 +1728,15 @@ function strangerWarning() {
     showStory(`
 
         <p>
-            "Who are they?"
+            The stranger looks directly into your eyes.
         </p>
 
         <p>
-            The man looks toward the road.
+            "They've been waiting for you."
+        </p>
+
+        <p>
+            "Who?"
         </p>
 
         <p>
@@ -1366,41 +1744,28 @@ function strangerWarning() {
         </p>
 
         <p>
-            "People who have been waiting
-            a very long time."
+            Before he can answer,
+            headlights appear at the end of the road.
         </p>
 
         <p>
-            "For me?"
+            A vehicle is approaching.
         </p>
 
         <p>
-            He looks back at you.
+            The stranger looks toward it.
         </p>
 
         <p class="dramatic">
-            "For you."
+            "You need to decide now."
         </p>
 
         <p>
-            Before you can ask another question,
-            headlights appear in the distance.
+            "Come with me..."
         </p>
 
         <p>
-            The man's entire posture changes.
-        </p>
-
-        <p>
-            "You need to go."
-        </p>
-
-        <p>
-            "Why?"
-        </p>
-
-        <p class="dramatic">
-            "Because they're here."
+            "...or stay here."
         </p>
 
     `);
@@ -1410,16 +1775,18 @@ function strangerWarning() {
 
 
     createChoice(
-        "Trust him and leave.",
+        "Trust the stranger.",
         trustStranger
     );
 
 
     createChoice(
-        "Stay and find out who is coming.",
+        "Stay behind.",
         stayBehind
     );
 }
+
+
 // ==========================================
 // TRUST THE STRANGER
 // ==========================================
@@ -1434,35 +1801,37 @@ function trustStranger() {
     showStory(`
 
         <p>
-            You don't understand what is happening.
+            You look at the approaching headlights.
         </p>
 
         <p>
-            You don't understand who this man is.
+            Then you look back at the stranger.
         </p>
 
         <p>
-            But something tells you to trust him.
+            Every sensible part of you says
+            not to trust him.
         </p>
 
         <p>
+            But something deeper tells you
+            that he is telling the truth.
+        </p>
+
+        <p class="dramatic">
             You take a step toward him.
         </p>
 
         <p>
-            He nods once.
+            He nods.
         </p>
 
-        <p class="dramatic">
+        <p>
             "Good."
         </p>
 
         <p>
-            Then he turns toward the darkness.
-        </p>
-
-        <p>
-            "Stay close."
+            "We don't have much time."
         </p>
 
     `);
@@ -1476,6 +1845,8 @@ function trustStranger() {
         strangerLeaves
     );
 }
+
+
 // ==========================================
 // STAY BEHIND
 // ==========================================
@@ -1490,20 +1861,21 @@ function stayBehind() {
     showStory(`
 
         <p>
-            You refuse to move.
+            You shake your head.
         </p>
 
         <p>
-            "I'm not going anywhere."
+            "I'm not going anywhere with a stranger."
         </p>
 
         <p>
-            The man studies you for a long moment.
+            The man studies you.
         </p>
 
         <p>
-            Then, unexpectedly,
-            he smiles.
+            For the first time,
+            something almost like a smile
+            touches his face.
         </p>
 
         <p class="dramatic">
@@ -1515,16 +1887,11 @@ function stayBehind() {
         </p>
 
         <p>
-            He doesn't answer.
+            He takes a step closer.
         </p>
 
         <p>
-            The approaching headlights
-            suddenly disappear.
-        </p>
-
-        <p>
-            Silence returns.
+            "Everything."
         </p>
 
     `);
@@ -1539,7 +1906,7 @@ function stayBehind() {
     );
 }
 // ==========================================
-// STRANGER LEAVES
+// THE STRANGER LEAVES
 // ==========================================
 
 function strangerLeaves() {
@@ -1547,57 +1914,64 @@ function strangerLeaves() {
     showStory(`
 
         <p>
+            The stranger looks at you one last time.
+        </p>
+
+        <p>
+            For a moment, neither of you speaks.
+        </p>
+
+        <p>
+            Then he steps backward.
+        </p>
+
+        <p>
+            The darkness seems to swallow him.
+        </p>
+
+        <p>
             You blink.
         </p>
 
-        <p>
-            The man is gone.
-        </p>
-
-        <p>
-            No footsteps.
-        </p>
-
-        <p>
-            No car.
-        </p>
-
-        <p>
-            Nothing.
-        </p>
-
-        <p>
-            Only the moon above you.
+        <p class="dramatic">
+            He's gone.
         </p>
 
         <p>
             You look down at your wrist.
         </p>
 
-        <p class="dramatic">
-            The golden mark is still glowing.
+        <p>
+            The golden mark is still there.
         </p>
 
         <p>
-            Then, somewhere in the distance,
-            you hear the lion roar.
+            It is glowing brighter now.
         </p>
 
         <p>
-            You don't know who the man was.
-        </p>
-
-        <p>
-            You don't know who "they" are.
-        </p>
-
-        <p>
-            And you have no idea why he said
-            you don't remember.
+            Then you hear it.
         </p>
 
         <p class="dramatic">
-            But one thing is becoming clear.
+            A roar.
+        </p>
+
+        <p>
+            You turn toward the sound.
+        </p>
+
+        <p>
+            The lion is standing at the end
+            of the road.
+        </p>
+
+        <p>
+            Its golden eyes meet yours.
+        </p>
+
+        <p>
+            And somehow, you understand.
         </p>
 
         <p class="dramatic">
@@ -1619,55 +1993,78 @@ function strangerLeaves() {
         chapterFinalEnding
     );
 }
+
+
 // ==========================================
-// FINAL CHAPTER ONE ENDING
+// FINAL CHAPTER ONE SCREEN
 // ==========================================
 
 function chapterFinalEnding() {
 
     showStory(`
 
-        <p class="dramatic">
+        <p class="chapter">
             CHAPTER ONE
         </p>
 
+        <h2>
+            The Return
+        </h2>
+
+        <p>
+            The city continues moving around you.
+        </p>
+
+        <p>
+            Cars pass in the distance.
+        </p>
+
+        <p>
+            Johannesburg is still awake.
+        </p>
+
+        <p>
+            But your world has changed.
+        </p>
+
+        <p>
+            You look at the golden mark on your wrist.
+        </p>
+
+        <p>
+            You don't know what it means.
+        </p>
+
+        <p>
+            You don't know who the stranger was.
+        </p>
+
+        <p>
+            You don't know why the lion recognised you.
+        </p>
+
+        <p>
+            But one thing is certain.
+        </p>
+
         <p class="dramatic">
-            THE LION
+            Someone has been waiting for you.
         </p>
 
         <p>
-            You came home tonight as an ordinary girl.
-        </p>
-
-        <p>
-            You leave this night knowing
-            that something inside you has awakened.
-        </p>
-
-        <p>
-            Somewhere in Johannesburg,
-            powerful people are already searching for you.
-        </p>
-
-        <p>
-            Somewhere in the darkness,
-            a lion watches.
-        </p>
-
-        <p>
-            And somewhere beyond your understanding,
-            a man who already knows your name
-            is waiting.
+            And now...
         </p>
 
         <p class="dramatic">
-            Your story has only just begun.
+            they know you've returned.
         </p>
 
+        <br>
+
         <p>
-            <em>
-                To be continued...
-            </em>
+            <strong>
+                END OF CHAPTER ONE
+            </strong>
         </p>
 
     `);
@@ -1680,214 +2077,6 @@ function chapterFinalEnding() {
         "Restart Chapter One",
         restartGame
     );
-}
-// ==========================================
-// CHAPTER ENDING
-// ==========================================
-
-function chapterEnding() {
-
-    let endingMessage = "";
-
-    if (
-        player.courage > player.fear &&
-        player.courage >= player.curiosity
-    ) {
-
-        endingMessage = `
-            <p>
-                You don't know what the mark means.
-            </p>
-
-            <p>
-                But you know one thing.
-            </p>
-
-            <p class="dramatic">
-                Whatever is coming...
-                you will face it.
-            </p>
-        `;
-
-    }
-
-    else if (
-        player.curiosity > player.fear
-    ) {
-
-        endingMessage = `
-            <p>
-                Questions race through your mind.
-            </p>
-
-            <p>
-                Who was the lion?
-            </p>
-
-            <p>
-                What does the symbol mean?
-            </p>
-
-            <p>
-                And why did it call you
-                "back"?
-            </p>
-        `;
-
-    }
-
-    else {
-
-        endingMessage = `
-            <p>
-                You want to run.
-            </p>
-
-            <p>
-                You want to forget tonight ever happened.
-            </p>
-
-            <p>
-                But deep down, you know the truth.
-            </p>
-
-            <p class="dramatic">
-                The darkness has already found you.
-            </p>
-        `;
-    }
-
-
-    showStory(`
-
-        ${endingMessage}
-
-        <p>
-            You take one final look at the golden mark
-            burning against your skin.
-        </p>
-
-        <p>
-            Then you hear something behind you.
-        </p>
-
-        <p class="dramatic">
-            Footsteps.
-        </p>
-
-        <p>
-            Slow.
-        </p>
-
-        <p>
-            Calm.
-        </p>
-
-        <p>
-            Getting closer.
-        </p>
-
-    `);
-
-
-    clearChoices();
-
-
-    createChoice(
-        "Turn around.",
-        meetTheStranger
-    );
-
-
-    createChoice(
-        "Run.",
-        runFromStranger
-    );
-}
-    let endingMessage = "";
-
-
-    if (
-        player.courage > player.fear &&
-        player.courage >= player.curiosity
-    ) {
-
-        endingMessage = `
-            You don't know what the mark means.
-            But you know one thing.
-
-            Whatever is coming...
-
-            you will face it.
-        `;
-
-    }
-
-
-    else if (
-        player.curiosity > player.fear
-    ) {
-
-        endingMessage = `
-            Questions race through your mind.
-
-            Who was the lion?
-
-            What does the symbol mean?
-
-            And why did it call you
-            "back"?
-        `;
-
-    }
-
-
-    else {
-
-        endingMessage = `
-            You want to run.
-
-            You want to forget tonight ever happened.
-
-            But deep down, you know the truth.
-
-            The darkness has already found you.
-        `;
-    }
-
-
-    showStory(`
-
-        <p class="dramatic">
-            CHAPTER ONE COMPLETE
-        </p>
-
-        <p>
-            ${endingMessage}
-        </p>
-
-        <p>
-            Somewhere in the darkness,
-            something watches.
-        </p>
-
-        <p class="dramatic">
-            And it knows your name.
-        </p>
-
-    `);
-
-
-    clearChoices();
-
-
-    createChoice(
-        "Restart Chapter One",
-        restartGame
-    );
-
-
-    updateStats();
 }
 
 
@@ -1902,7 +2091,9 @@ function restartGame() {
     player.trust = 0;
     player.fear = 0;
 
+
     updateStats();
+
 
     startGame();
 }
@@ -1913,4 +2104,3 @@ function restartGame() {
 // ==========================================
 
 startGame();
-
