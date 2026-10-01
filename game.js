@@ -1620,6 +1620,68 @@ function strangerLeaves() {
     );
 }
 // ==========================================
+// FINAL CHAPTER ONE ENDING
+// ==========================================
+
+function chapterFinalEnding() {
+
+    showStory(`
+
+        <p class="dramatic">
+            CHAPTER ONE
+        </p>
+
+        <p class="dramatic">
+            THE LION
+        </p>
+
+        <p>
+            You came home tonight as an ordinary girl.
+        </p>
+
+        <p>
+            You leave this night knowing
+            that something inside you has awakened.
+        </p>
+
+        <p>
+            Somewhere in Johannesburg,
+            powerful people are already searching for you.
+        </p>
+
+        <p>
+            Somewhere in the darkness,
+            a lion watches.
+        </p>
+
+        <p>
+            And somewhere beyond your understanding,
+            a man who already knows your name
+            is waiting.
+        </p>
+
+        <p class="dramatic">
+            Your story has only just begun.
+        </p>
+
+        <p>
+            <em>
+                To be continued...
+            </em>
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Restart Chapter One",
+        restartGame
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
