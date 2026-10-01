@@ -1421,6 +1421,62 @@ function strangerWarning() {
     );
 }
 // ==========================================
+// TRUST THE STRANGER
+// ==========================================
+
+function trustStranger() {
+
+    player.trust += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            You don't understand what is happening.
+        </p>
+
+        <p>
+            You don't understand who this man is.
+        </p>
+
+        <p>
+            But something tells you to trust him.
+        </p>
+
+        <p>
+            You take a step toward him.
+        </p>
+
+        <p>
+            He nods once.
+        </p>
+
+        <p class="dramatic">
+            "Good."
+        </p>
+
+        <p>
+            Then he turns toward the darkness.
+        </p>
+
+        <p>
+            "Stay close."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Follow him.",
+        strangerLeaves
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
