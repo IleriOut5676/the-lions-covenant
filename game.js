@@ -1147,6 +1147,68 @@ function askStranger() {
     );
 }
 // ==========================================
+// CONFRONT THE STRANGER
+// ==========================================
+
+function confrontStranger() {
+
+    player.courage += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            "Why were you following me?"
+        </p>
+
+        <p>
+            The man's expression doesn't change.
+        </p>
+
+        <p>
+            "I wasn't."
+        </p>
+
+        <p>
+            You narrow your eyes.
+        </p>
+
+        <p>
+            "Then what are you doing here?"
+        </p>
+
+        <p>
+            He takes one step closer.
+        </p>
+
+        <p class="dramatic">
+            "Waiting for you."
+        </p>
+
+        <p>
+            The words send a strange chill through you.
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Ask him what he means.",
+        askAboutMark
+    );
+
+
+    createChoice(
+        "Step away from him.",
+        rejectStranger
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
