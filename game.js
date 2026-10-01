@@ -1,3 +1,4 @@
+alert("GAME.JS IS WORKING!");
 ```javascript
 // ==========================================
 // THE LION'S COVENANT
