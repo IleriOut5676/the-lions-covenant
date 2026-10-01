@@ -789,7 +789,158 @@ function lookBehind() {
 // THE MARK
 // ==========================================
 
+// ==========================================
+// THE MARK
+// ==========================================
+
 function revealMark() {
+
+    let reaction = "";
+
+    if (
+        player.courage >= player.curiosity &&
+        player.courage >= player.fear &&
+        player.courage >= player.trust
+    ) {
+
+        reaction = `
+            <p>
+                Your first instinct is not to run.
+            </p>
+
+            <p>
+                Somehow, standing beneath the moon,
+                you feel strangely certain.
+            </p>
+
+            <p class="dramatic">
+                You are not supposed to be afraid.
+            </p>
+        `;
+
+    }
+
+    else if (
+        player.curiosity >= player.courage &&
+        player.curiosity >= player.fear &&
+        player.curiosity >= player.trust
+    ) {
+
+        reaction = `
+            <p>
+                Your mind races with questions.
+            </p>
+
+            <p>
+                What is happening to you?
+            </p>
+
+            <p>
+                Why does this symbol feel familiar?
+            </p>
+
+            <p class="dramatic">
+                And why does some part of you want to understand it?
+            </p>
+        `;
+
+    }
+
+    else if (
+        player.trust >= player.courage &&
+        player.trust >= player.curiosity &&
+        player.trust >= player.fear
+    ) {
+
+        reaction = `
+            <p>
+                You should be terrified.
+            </p>
+
+            <p>
+                Yet something inside you tells you
+                that this is not an attack.
+            </p>
+
+            <p class="dramatic">
+                Somehow, you feel that you have been here before.
+            </p>
+        `;
+
+    }
+
+    else {
+
+        reaction = `
+            <p>
+                Panic rises in your chest.
+            </p>
+
+            <p>
+                You want to tear the strange symbol
+                from your skin.
+            </p>
+
+            <p class="dramatic">
+                But the mark only burns brighter.
+            </p>
+        `;
+    }
+
+
+    showStory(`
+
+        <p>
+            You look down.
+        </p>
+
+        <p>
+            A golden symbol is appearing beneath your skin.
+        </p>
+
+        <p>
+            It resembles the head of a lion
+            surrounded by an ancient circle.
+        </p>
+
+        <p>
+            You have never seen it before.
+        </p>
+
+        <p>
+            Yet somehow...
+        </p>
+
+        <p class="dramatic">
+            you recognise it.
+        </p>
+
+        ${reaction}
+
+        <p>
+            Somewhere across the city,
+            an elderly woman suddenly opens her eyes.
+        </p>
+
+        <p>
+            She looks toward the moon.
+        </p>
+
+        <p class="dramatic">
+            "She's awakened."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Continue.",
+        chapterEnding
+    );
+}
 
     showStory(`
 
