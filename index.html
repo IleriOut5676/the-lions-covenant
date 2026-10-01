@@ -1,1 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Lion's Covenant</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <header class="game-header">
+            <p class="eyebrow">AN INTERACTIVE STORY</p>
+
+            <h1>The Lion's Covenant</h1>
+
+            <p class="tagline">
+                Every choice awakens something.
+            </p>
+        </header>
+
+
+        <section class="story-box">
+
+            <p class="chapter">
+                CHAPTER ONE
+            </p>
+
+            <h2 id="scene-title">
+                The Lion
+            </h2>
+
+            <div id="story-text">
+
+                <p>
+                    Johannesburg is unusually quiet tonight.
+                </p>
+
+                <p>
+                    You should have been home twenty minutes ago.
+                    Instead, you are walking alone beneath a moon
+                    so bright that the road looks almost silver.
+                </p>
+
+                <p>
+                    Then you hear it.
+                </p>
+
+                <p class="dramatic">
+                    A growl.
+                </p>
+
+            </div>
+
+
+            <div id="choices" class="choices">
+
+                <button onclick="makeChoice('courage')">
+                    Keep walking. I refuse to let fear control me.
+                </button>
+
+                <button onclick="makeChoice('curiosity')">
+                    Stop and listen.
+                </button>
+
+                <button onclick="makeChoice('fear')">
+                    Turn around and run.
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="stats">
+
+            <div>
+                <span>Courage</span>
+                <strong id="courage">0</strong>
+            </div>
+
+            <div>
+                <span>Curiosity</span>
+                <strong id="curiosity">0</strong>
+            </div>
+
+            <div>
+                <span>Trust</span>
+                <strong id="trust">0</strong>
+            </div>
+
+            <div>
+                <span>Fear</span>
+                <strong id="fear">0</strong>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="js/game.js"></script>
+
+</body>
+</html>
