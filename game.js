@@ -1079,6 +1079,71 @@ function meetTheStranger() {
     createChoice(
         "Say nothing and watch him.",
         observeStranger
+        
+    );
+}
+// ==========================================
+// ASK THE STRANGER
+// ==========================================
+
+function askStranger() {
+
+    player.curiosity += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            "Who are you?"
+        </p>
+
+        <p>
+            The man doesn't answer immediately.
+        </p>
+
+        <p>
+            His gaze remains fixed on your wrist.
+        </p>
+
+        <p>
+            "The better question,"
+            he finally says,
+            "is who are you?"
+        </p>
+
+        <p>
+            Your stomach drops.
+        </p>
+
+        <p>
+            "I asked you first."
+        </p>
+
+        <p class="dramatic">
+            A faint smile touches his lips.
+        </p>
+
+        <p>
+            "I know."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Ask him what he knows about the mark.",
+        askAboutMark
+    );
+
+
+    createChoice(
+        "Tell him to leave you alone.",
+        rejectStranger
     );
 }
 // ==========================================
