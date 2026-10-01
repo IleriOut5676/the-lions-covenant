@@ -1,3 +1,4 @@
+```javascript
 // ==========================================
 // THE LION'S COVENANT
 // CHOICE-BASED GAME ENGINE
@@ -10,14 +11,10 @@
 // ==========================================
 
 const player = {
-
     courage: 0,
     curiosity: 0,
     trust: 0,
-    fear: 0,
-
-    name: "Unknown"
-
+    fear: 0
 };
 
 
@@ -25,11 +22,13 @@ const player = {
 // GET HTML ELEMENTS
 // ==========================================
 
-const storyText =
-    document.getElementById("story-text");
+const storyText = document.getElementById("story-text");
+const choices = document.getElementById("choices");
 
-const choices =
-    document.getElementById("choices");
+const courageDisplay = document.getElementById("courage");
+const curiosityDisplay = document.getElementById("curiosity");
+const trustDisplay = document.getElementById("trust");
+const fearDisplay = document.getElementById("fear");
 
 
 // ==========================================
@@ -38,27 +37,56 @@ const choices =
 
 function updateStats() {
 
-    document.getElementById("courage")
-        .textContent = player.courage;
-
-    document.getElementById("curiosity")
-        .textContent = player.curiosity;
-
-    document.getElementById("trust")
-        .textContent = player.trust;
-
-    document.getElementById("fear")
-        .textContent = player.fear;
+    courageDisplay.textContent = player.courage;
+    curiosityDisplay.textContent = player.curiosity;
+    trustDisplay.textContent = player.trust;
+    fearDisplay.textContent = player.fear;
 }
 
 
 // ==========================================
-// START OF THE GAME
+// DISPLAY STORY
+// ==========================================
+
+function showStory(content) {
+
+    storyText.innerHTML = content;
+}
+
+
+// ==========================================
+// CREATE CHOICE BUTTON
+// ==========================================
+
+function createChoice(text, action) {
+
+    const button = document.createElement("button");
+
+    button.textContent = text;
+
+    button.addEventListener("click", action);
+
+    choices.appendChild(button);
+}
+
+
+// ==========================================
+// CLEAR CHOICES
+// ==========================================
+
+function clearChoices() {
+
+    choices.innerHTML = "";
+}
+
+
+// ==========================================
+// START GAME
 // ==========================================
 
 function startGame() {
 
-    storyText.innerHTML = `
+    showStory(`
 
         <p>
             Johannesburg is unusually quiet tonight.
@@ -89,34 +117,31 @@ function startGame() {
             A growl.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="firstChoice('courage')">
-
-            Keep walking.
-            I refuse to let fear control me.
-
-        </button>
+    clearChoices();
 
 
-        <button onclick="firstChoice('curiosity')">
-
-            Stop and listen.
-            Something about the sound feels familiar.
-
-        </button>
+    createChoice(
+        "Keep walking. I refuse to let fear control me.",
+        () => firstChoice("courage")
+    );
 
 
-        <button onclick="firstChoice('fear')">
+    createChoice(
+        "Stop and listen. Something about the sound feels familiar.",
+        () => firstChoice("curiosity")
+    );
 
-            Turn around and run.
 
-        </button>
+    createChoice(
+        "Turn around and run.",
+        () => firstChoice("fear")
+    );
 
-    `;
+
+    updateStats();
 }
 
 
@@ -126,10 +151,11 @@ function startGame() {
 
 function firstChoice(choice) {
 
-
     if (choice === "courage") {
 
-        player.courage++;
+        player.courage += 1;
+
+        updateStats();
 
         courageousEncounter();
 
@@ -138,7 +164,9 @@ function firstChoice(choice) {
 
     else if (choice === "curiosity") {
 
-        player.curiosity++;
+        player.curiosity += 1;
+
+        updateStats();
 
         curiousEncounter();
 
@@ -147,14 +175,13 @@ function firstChoice(choice) {
 
     else if (choice === "fear") {
 
-        player.fear++;
+        player.fear += 1;
+
+        updateStats();
 
         fearfulEncounter();
 
     }
-
-
-    updateStats();
 }
 
 
@@ -164,7 +191,7 @@ function firstChoice(choice) {
 
 function courageousEncounter() {
 
-    storyText.innerHTML = `
+    showStory(`
 
         <p>
             You keep walking.
@@ -199,26 +226,22 @@ function courageousEncounter() {
             And it is staring directly at you.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="courageChoice()">
-
-            Stand your ground.
-
-        </button>
+    clearChoices();
 
 
-        <button onclick="speakToLion()">
+    createChoice(
+        "Stand your ground.",
+        courageChoice
+    );
 
-            Ask,
-            "Why are you following me?"
 
-        </button>
-
-    `;
+    createChoice(
+        'Ask, "Why are you following me?"',
+        speakToLion
+    );
 }
 
 
@@ -228,7 +251,7 @@ function courageousEncounter() {
 
 function curiousEncounter() {
 
-    storyText.innerHTML = `
+    showStory(`
 
         <p>
             You stop.
@@ -259,25 +282,22 @@ function curiousEncounter() {
             Something golden moves between the trees.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="investigateLion()">
-
-            Go closer.
-
-        </button>
+    clearChoices();
 
 
-        <button onclick="watchLion()">
+    createChoice(
+        "Go closer.",
+        investigateLion
+    );
 
-            Stay hidden and observe.
 
-        </button>
-
-    `;
+    createChoice(
+        "Stay hidden and observe.",
+        watchLion
+    );
 }
 
 
@@ -287,7 +307,7 @@ function curiousEncounter() {
 
 function fearfulEncounter() {
 
-    storyText.innerHTML = `
+    showStory(`
 
         <p>
             You run.
@@ -318,26 +338,22 @@ function fearfulEncounter() {
             Waiting for you.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="faceFear()">
-
-            Face the lion.
-
-        </button>
+    clearChoices();
 
 
-        <button onclick="begLion()">
+    createChoice(
+        "Face the lion.",
+        faceFear
+    );
 
-            Whisper,
-            "Please don't hurt me."
 
-        </button>
-
-    `;
+    createChoice(
+        'Whisper, "Please don\'t hurt me."',
+        begLion
+    );
 }
 
 
@@ -347,9 +363,12 @@ function fearfulEncounter() {
 
 function courageChoice() {
 
-    player.courage++;
+    player.courage += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             You refuse to move.
@@ -383,21 +402,16 @@ function courageChoice() {
             In recognition.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="lionVoice()">
-
-            Reach toward it.
-
-        </button>
-
-    `;
+    clearChoices();
 
 
-    updateStats();
+    createChoice(
+        "Reach toward it.",
+        lionVoice
+    );
 }
 
 
@@ -407,7 +421,9 @@ function courageChoice() {
 
 function speakToLion() {
 
-    player.curiosity++;
+    player.curiosity += 1;
+
+    updateStats();
 
     lionVoice();
 }
@@ -419,9 +435,12 @@ function speakToLion() {
 
 function investigateLion() {
 
-    player.curiosity++;
+    player.curiosity += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             You step between the trees.
@@ -432,8 +451,7 @@ function investigateLion() {
         </p>
 
         <p>
-            A lion stands beneath an enormous
-            old tree.
+            A lion stands beneath an enormous old tree.
         </p>
 
         <p>
@@ -452,21 +470,16 @@ function investigateLion() {
             The same symbol appears on your wrist.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="touchWrist()">
-
-            Look at your wrist.
-
-        </button>
-
-    `;
+    clearChoices();
 
 
-    updateStats();
+    createChoice(
+        "Look at your wrist.",
+        touchWrist
+    );
 }
 
 
@@ -476,9 +489,12 @@ function investigateLion() {
 
 function watchLion() {
 
-    player.curiosity++;
+    player.curiosity += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             You stay hidden.
@@ -508,21 +524,16 @@ function watchLion() {
             To something behind you.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="lookBehind()">
-
-            Slowly turn around.
-
-        </button>
-
-    `;
+    clearChoices();
 
 
-    updateStats();
+    createChoice(
+        "Slowly turn around.",
+        lookBehind
+    );
 }
 
 
@@ -532,9 +543,12 @@ function watchLion() {
 
 function faceFear() {
 
-    player.courage++;
+    player.courage += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             You stop running.
@@ -561,22 +575,16 @@ function faceFear() {
             They look almost human.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="lionVoice()">
-
-            Ask,
-            "What are you?"
-
-        </button>
-
-    `;
+    clearChoices();
 
 
-    updateStats();
+    createChoice(
+        'Ask, "What are you?"',
+        lionVoice
+    );
 }
 
 
@@ -586,9 +594,12 @@ function faceFear() {
 
 function begLion() {
 
-    player.fear++;
+    player.fear += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             Your voice barely comes out.
@@ -610,21 +621,16 @@ function begLion() {
             A man's voice answers inside your mind.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="lionVoice()">
-
-            Listen.
-
-        </button>
-
-    `;
+    clearChoices();
 
 
-    updateStats();
+    createChoice(
+        "Listen.",
+        lionVoice
+    );
 }
 
 
@@ -634,9 +640,12 @@ function begLion() {
 
 function lionVoice() {
 
-    player.trust++;
+    player.trust += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             The lion's golden eyes meet yours.
@@ -668,28 +677,22 @@ function lionVoice() {
             </em>
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="askQuestion()">
-
-            "Back from where?"
-
-        </button>
+    clearChoices();
 
 
-        <button onclick="staySilent()">
-
-            Say nothing.
-
-        </button>
-
-    `;
+    createChoice(
+        '"Back from where?"',
+        askQuestion
+    );
 
 
-    updateStats();
+    createChoice(
+        "Say nothing.",
+        staySilent
+    );
 }
 
 
@@ -699,10 +702,11 @@ function lionVoice() {
 
 function askQuestion() {
 
-    player.curiosity++;
+    player.curiosity += 1;
+
+    updateStats();
 
     revealMark();
-
 }
 
 
@@ -712,10 +716,11 @@ function askQuestion() {
 
 function staySilent() {
 
-    player.trust++;
+    player.trust += 1;
+
+    updateStats();
 
     revealMark();
-
 }
 
 
@@ -725,10 +730,11 @@ function staySilent() {
 
 function touchWrist() {
 
-    player.trust++;
+    player.trust += 1;
+
+    updateStats();
 
     revealMark();
-
 }
 
 
@@ -738,9 +744,12 @@ function touchWrist() {
 
 function lookBehind() {
 
-    player.fear++;
+    player.fear += 1;
 
-    storyText.innerHTML = `
+    updateStats();
+
+
+    showStory(`
 
         <p>
             You slowly turn around.
@@ -762,21 +771,16 @@ function lookBehind() {
             But something is burning against your wrist.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
-
-        <button onclick="revealMark()">
-
-            Look at your wrist.
-
-        </button>
-
-    `;
+    clearChoices();
 
 
-    updateStats();
+    createChoice(
+        "Look at your wrist.",
+        revealMark
+    );
 }
 
 
@@ -786,15 +790,14 @@ function lookBehind() {
 
 function revealMark() {
 
-    storyText.innerHTML = `
+    showStory(`
 
         <p>
             You look down.
         </p>
 
         <p>
-            A golden symbol is appearing beneath
-            your skin.
+            A golden symbol is appearing beneath your skin.
         </p>
 
         <p>
@@ -827,18 +830,16 @@ function revealMark() {
             "She's awakened."
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
+    clearChoices();
 
-        <button onclick="chapterEnding()">
 
-            Continue.
-
-        </button>
-
-    `;
+    createChoice(
+        "Continue.",
+        chapterEnding
+    );
 }
 
 
@@ -852,8 +853,7 @@ function chapterEnding() {
 
 
     if (
-        player.courage >
-        player.fear &&
+        player.courage > player.fear &&
         player.courage >= player.curiosity
     ) {
 
@@ -870,8 +870,7 @@ function chapterEnding() {
 
 
     else if (
-        player.curiosity >
-        player.fear
+        player.curiosity > player.fear
     ) {
 
         endingMessage = `
@@ -902,7 +901,7 @@ function chapterEnding() {
     }
 
 
-    storyText.innerHTML = `
+    showStory(`
 
         <p class="dramatic">
             CHAPTER ONE COMPLETE
@@ -921,18 +920,16 @@ function chapterEnding() {
             And it knows your name.
         </p>
 
-    `;
+    `);
 
 
-    choices.innerHTML = `
+    clearChoices();
 
-        <button onclick="location.reload()">
 
-            Restart Chapter One
-
-        </button>
-
-    `;
+    createChoice(
+        "Restart Chapter One",
+        restartGame
+    );
 
 
     updateStats();
@@ -940,9 +937,25 @@ function chapterEnding() {
 
 
 // ==========================================
-// START GAME
+// RESTART GAME
+// ==========================================
+
+function restartGame() {
+
+    player.courage = 0;
+    player.curiosity = 0;
+    player.trust = 0;
+    player.fear = 0;
+
+    updateStats();
+
+    startGame();
+}
+
+
+// ==========================================
+// START THE GAME
 // ==========================================
 
 startGame();
-
-updateStats();
+```
