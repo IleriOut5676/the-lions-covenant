@@ -1262,6 +1262,85 @@ function observeStranger() {
     );
 }
 // ==========================================
+// ASK ABOUT THE MARK
+// ==========================================
+
+function askAboutMark() {
+
+    player.curiosity += 1;
+
+    updateStats();
+
+
+    showStory(`
+
+        <p>
+            "What do you know about this?"
+        </p>
+
+        <p>
+            You hold up your wrist.
+        </p>
+
+        <p>
+            The golden symbol is still glowing.
+        </p>
+
+        <p>
+            For the first time,
+            the man's calm expression disappears.
+        </p>
+
+        <p>
+            He looks almost concerned.
+        </p>
+
+        <p class="dramatic">
+            "You shouldn't have awakened yet."
+        </p>
+
+        <p>
+            "Awakened?"
+        </p>
+
+        <p>
+            He says nothing.
+        </p>
+
+        <p>
+            You take a step toward him.
+        </p>
+
+        <p>
+            "What does that mean?"
+        </p>
+
+        <p>
+            He looks directly into your eyes.
+        </p>
+
+        <p class="dramatic">
+            "It means they know you're alive."
+        </p>
+
+    `);
+
+
+    clearChoices();
+
+
+    createChoice(
+        "Who are 'they'?",
+        strangerWarning
+    );
+
+
+    createChoice(
+        "Tell him you don't believe him.",
+        rejectStranger
+    );
+}
+// ==========================================
 // CHAPTER ENDING
 // ==========================================
 
